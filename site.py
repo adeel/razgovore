@@ -1,12 +1,11 @@
-import cherrypy
-
 import os
+import cherrypy
 
 from controllers.app import AppController
 from controllers.rooms import RoomsController
 from controllers.ajax import AJAXController
 
-import config  
+import config
 
 # Routes
 
