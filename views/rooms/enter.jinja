@@ -1,0 +1,40 @@
+{% extends "wrapper.layout.jinja" %}
+{% block wrapper %}
+  <h1>{{room.name}}</h1>
+  <p style="font-size:0.9em; color: #333; line-height: 1.5em">{{room.description}}</p>
+  <form action="" method="post">
+    <label for="user_name">
+{% if error_name_taken %}
+      That name is already taken.
+{% elif error_name_length %}
+      That name is too long.
+{% elif error_invalid_name %}
+      That is name is invalid.
+{% else %}
+      Pick a name:
+{% endif %}
+    </label>
+    <input type="text" id="user_name" name="user_name" />
+    <input type="submit" class="submit" value="Enter">
+  </form>
+  <p style="font-size: 0.9em; color: #777">{{headcount}}</p>
+  <p style="font-size: 0.8em; color: #999"><a href="/">return</a></p>
+{% endblock %}
+{% block styles %}
+  #wrapper form input#user_name {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3px;
+    font-size: 14pt;
+    font-weight: bold;
+  }
+{% endblock %}
+{% block scripts %}
+  <!-- <script type="text/javascript" charset="utf-8"
+    src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script> -->
+  <script type="text/javascript" charset="utf-8">
+    document.getElementById('user_name').focus();
+  </script>
+{% endblock %}
