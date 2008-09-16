@@ -1,3 +1,0 @@
-include razgovore/config/deployment.ini_tmpl
-recursive-include razgovore/public *
-recursive-include razgovore/templates *
