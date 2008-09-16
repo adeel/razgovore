@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>room</title>
+		<link rel="stylesheet" type="text/css" media="screen" charset="utf-8"
+		  href="room.css" />
+	</head>
+	<body onload="document.getElementById('new_message').focus();">
+		<div id="header">
+		  <h1>AoPS-ML Chatroom</h1>
+		</div>
+		<div id="content">
+		  <div class="message_wrapper">
+		    <span class="speaker me">Foo</span>
+		    <span class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+		  </div>
+		  <div class="message_wrapper">
+		    <span class="speaker b">Bar</span>
+		    <span class="message">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+		  </div>
+		  <div class="message_wrapper">
+		    <span class="speaker c">Baz</span>
+		    <span class="message">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+		  </div>
+      <div class="message_wrapper">
+		    <span class="speaker d">Qux</span>
+		    <span class="message">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+		  </div>
+      <div class="message_wrapper action_message">
+		    <span class="speaker c">Baz</span>
+		    <span class="message">dances</span>
+		  </div>
+		</div>
+		<div id="input_wrapper">
+		  <form id="input_form">
+		    <span class="speaker me">Foo</span>
+  		  <input type="text" class="text" name="new_message" id="new_message" />
+  		  <input type="submit" class="submit" value="Send"
+  		    name="message_submit" id="message_submit" />
+		  </form>
+		</div>
+	</body>
+</html>
