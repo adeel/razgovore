@@ -8,7 +8,7 @@ body {
 
 #header {
   width: 96%;
-  height: 42px;
+  height: 65px;
   display: block;
   padding: 10px 2% 0px;
   background-color: white;
@@ -22,9 +22,27 @@ html>body #header {
     margin: 0;
     font-size: 32px;
   }
+  #userlist {
+    padding: 3px;
+    line-height: 1.2em;
+/*    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;*/
+    margin-right: -10000px;
+  }
+    #userlist.more {
+      margin-right: 0px;
+    }
+    #userlist span {
+      padding-right: 5px;
+      font-size: 16px;
+    }
+    #userlist span.hidden {
+      display: none;
+    }
   
 #content {
-  padding: 60px 2% 90px;
+  padding: 80px 2% 90px;
   font-size: 18px;
 }
   .message_wrapper {
