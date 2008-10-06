@@ -7,7 +7,7 @@ from elixir import *
 from elixir.events import before_insert, before_update
 
 metadata.bind = 'sqlite:///razgovore.db'
-metadata.bind.echo = True
+metadata.bind.echo = False
 
 class User(Entity):
     id = Field(Integer, primary_key=True)
@@ -16,12 +16,16 @@ class User(Entity):
     color = Field(PickleType)
     messages = OneToMany('Message')
     
+    def get_instances(self):
+        return UserInRoom.query.filter_by(user_id=self.id).all()
+    instances = property(get_instances)
+    
     def get_rooms(self):
-        return UserInRoom.query.filter_by(user_id=self.id)
-    rooms = property(_get_rooms)
+        return [i.room for i in self.instances]
+    rooms = property(get_rooms)
     
     def __repr__(self):
-        return "<User#%s (%s)>" % (self.id, self.nick)
+        return "User#%s (%s)" % (self.id, self.nick)
     
     @before_insert
     def hash_password(self, password=None):
@@ -39,12 +43,16 @@ class Room(Entity):
     was_created_on = Field(DateTime)
     messages = OneToMany('Message')
     
+    def get_instances(self):
+        return UserInRoom.query.filter_by(room_id=self.id).all()
+    instances = property(get_instances)
+    
     def get_users(self):
-        return UserInRoom.query.filter_by(room_id=self.id)
-    users = property(_get_users)
+        return [i.user for i in self.instances]
+    users = property(get_users)
     
     def __repr__(self):
-        return "<Room#%s (%s)>" % (self.id, self.name)
+        return "Room#%s (%s)" % (self.id, self.name)
     
     def add_user(self, user, **options):
         """Add the user to a room.  Options: is_admin."""
@@ -70,7 +78,7 @@ class Room(Entity):
     def cleanup(self):
         for user in self.users:
             now = datetime.datetime.now()
-            delta = (now - user.last_poll).seconds:
+            delta = (now - user.last_poll).seconds
             if delta > 10:
                 if delta < 60:
                     Message(room=self, text="%s left." % user.nick)
@@ -109,7 +117,7 @@ class Message(Entity):
     date = Field(DateTime, default=datetime.datetime.now)
     
     def __repr__(self):
-        return "<Message#%s ('%s', room=%s, user=%s, date=%s)>" % (self.id,
+        return "Message#%s ('%s', room=%s, user=%s, date=%s)" % (self.id,
             self.text, self.room, self.user, self.date)
     
 setup_all()
