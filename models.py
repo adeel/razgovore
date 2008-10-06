@@ -55,7 +55,6 @@ class Room(Entity):
         return "Room#%s (%s)" % (self.id, self.name)
     
     def add_user(self, user, **options):
-        """Add the user to a room.  Options: is_admin."""
         if user not in self.users:
             UserInRoom(room=self, user=user, **options)
             Message(room=self, text="%s has entered the room." % user.nick)
@@ -86,7 +85,7 @@ class Room(Entity):
         session.commit()
 
 class UserInRoom(Entity):
-    """This model represents a single session--one User in one Room."""
+    """This model represents a single instance of one User in one Room."""
     id = Field(Integer, primary_key=True)
     user_id = Field(Integer)
     room_id = Field(Integer)
