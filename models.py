@@ -38,6 +38,7 @@ class User(Entity):
 class Room(Entity):
     id = Field(Integer, primary_key=True)
     name = Field(Unicode(50))
+    name_ = Field(Unicode(50))
     topic = Field(UnicodeText)
     is_latex_on = Field(Boolean, default=False)
     was_created_on = Field(DateTime)
