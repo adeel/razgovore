@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Razgovore</title>
+    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8"
+      href="/static/styles/base.css" />
+    <style type="text/css" media="screen">
+      .room {
+        margin: 10px;
+      }
+        .room div {
+          margin: 3px;
+        }
+          .room div.title {
+            font-weight: bold;
+            font-size: 1.1em;
+          }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper_box">
+      <p>
+        This is Razgovore, group chatting for your web browser.  Some public
+        rooms are listed below.
+      </p>
+{% for room in rooms %}
+      <div class="room">
+        <div class="title"><a href="{{room.name_}}">{{room.name}}</a></div>
+        <div class="topic">{{room.topic}}</div>
+      </div>
+{% endfor %}
+    </div>
+  </body>
+</html>
