@@ -13,7 +13,6 @@ body {
   padding: 10px 2% 0px;
   background-color: white;
   border-bottom: 1px solid #999;
-/*  overflow: auto;*/
 }
 html>body #header {
 	position: fixed;
