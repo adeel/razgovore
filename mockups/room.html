@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>room</title>
+		<title>Test Room (20) &mdash; Razgovore</title>
 		<link rel="stylesheet" type="text/css" media="screen" charset="utf-8"
 		  href="room.css" />
 	</head>
@@ -11,7 +11,7 @@
 		<div id="header">
 		  <h1>Test Room</h1>
 		  <div id="userlist">
-		    <span>Currently in the room:</span>
+		    <span>Currently in the room (20):</span>
 		    <span class="speaker me">Foo</span>
 		    <span class="speaker b">Bar</span>
 		    <span class="speaker c">Baz</span>
@@ -107,53 +107,34 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"
 		  type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
-		  function truncate_userlist() {
-		    var userlist = $('userlist');
-  		  var width = userlist.getWidth() - 10000;
+      window.onload = function() {
+        var userlist = $('userlist');
+        var width = userlist.getWidth() - 10000;
         userlist.innerHTML = '<span>' + userlist.innerHTML + '</span>';
         userlist = userlist.down();
         var users = userlist.childElements();
         users.reverse();
         users.each(function(user) {
-          if (!user.hasClassName('speaker')) {
-            return;
-          }
-          user.hide();
-          if (userlist.getWidth() < width) {
-            userlist.innerHTML += '<span><a href="#" id="userlist-more">...</a></span>';
-            throw $break;
-          }
-        });
-		  }
-
-      truncate_userlist();
-      var is_more_showing = false;
-      
-      var more = $('userlist-more');
-      if (more) {
-        more.observe('click', function() {
-          if (!is_more_showing) {
-            var header = $('header');
-            var height = header.getHeight() + 10;
-            header.setStyle({'height': height + 'px'});
-            $('content').setStyle({'padding-top': (15 + height) + 'px'});
-            var userlist = $('userlist');
-            userlist.addClassName('more');
-            var users = userlist.down().childElements();
-            users.each(function(user) {
-              if (user.hasClassName('speaker')) {
-                user.show();
-              }
-            });
-            is_more_showing = true;
-          } else {
-            $('userlist').removeClassName('more');
-            $('header').setStyle({'height': '65px'});
-            $('content').setStyle({'padding-top': '80px'});
-            truncate_userlist();
-            is_more_showing = false;
+          if (user.hasClassName('speaker')) {
+            user.hide();
+            if (userlist.getWidth() < width) {
+              userlist.innerHTML += ('<span>'
+                + '<a href="#" id="userlist-more">...</a></span>');
+              $('userlist-more').observe('click', expand_userlist);
+              throw $break;
+            }
           }
         });
+      }
+		  
+		  var expand_userlist = function() {
+        $('userlist').down().childElements().each(Element.show);
+        $('userlist-more').remove();
+        $('userlist').setStyle({marginRight: '0px'});
+        
+        var h = $('header').getHeight() + 10;
+        $('content').setStyle({paddingTop: (h+15) + 'px'});
+        $('header').setStyle({height: h + 'px'});
       }
 		</script>
 	</body>

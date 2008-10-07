@@ -13,6 +13,7 @@ body {
   padding: 10px 2% 0px;
   background-color: white;
   border-bottom: 1px solid #999;
+/*  overflow: auto;*/
 }
 html>body #header {
 	position: fixed;
@@ -24,21 +25,13 @@ html>body #header {
   }
   #userlist {
     padding: 3px;
-    line-height: 1.2em;
-/*    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;*/
+    line-height: 1.3em;
     margin-right: -10000px;
+    overflow: auto;
   }
-    #userlist.more {
-      margin-right: 0px;
-    }
     #userlist span {
       padding-right: 5px;
       font-size: 16px;
-    }
-    #userlist span.hidden {
-      display: none;
     }
   
 #content {
