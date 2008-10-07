@@ -84,6 +84,16 @@ class Room(Entity):
                     Message(room=self, text="%s left." % user.nick)
                 user.room = None
         session.commit()
+    
+    @before_insert
+    @before_update
+    def urlize_name(self):
+        re_whitespace = re.compile('\s+')
+        re_invalid_chars = re.compile('[^A-Za-z0-9_\-]')
+        name_ = self.name.lower()
+        name_ = re_whitespace.sub('-', name_)
+        name_ = re_invalid_chars.sub('', name_)
+        self.name_ = name_
 
 class UserInRoom(Entity):
     """This model represents a single instance of one User in one Room."""
