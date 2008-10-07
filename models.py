@@ -93,6 +93,8 @@ class Room(Entity):
         name_ = self.name.lower()
         name_ = re_whitespace.sub('-', name_)
         name_ = re_invalid_chars.sub('', name_)
+        while self.get_by(name_=name_):
+            name_ += '-'
         self.name_ = name_
 
 class UserInRoom(Entity):
