@@ -8,14 +8,17 @@
       href="/static/styles/base.css" />
     <style type="text/css" media="screen">
       .room {
-        margin: 10px;
+        margin: 20px;
       }
         .room div {
           margin: 3px;
         }
           .room div.title {
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.6em;
+          }
+          .room div.topic {
+            font-size: 1.0em;
           }
     </style>
   </head>
@@ -28,7 +31,7 @@
 {% for room in rooms %}
       <div class="room">
         <div class="title"><a href="{{room.name_}}">{{room.name}}</a></div>
-        <div class="topic">{{room.topic}}</div>
+        <div class="topic">{% if room.topic %}{{room.topic}}{% endif %}</div>
       </div>
 {% endfor %}
     </div>
